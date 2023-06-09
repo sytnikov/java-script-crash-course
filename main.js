@@ -58,8 +58,30 @@ Person.prototype.getLastNameAndIntitals = function () {
     return `${this.lastName} ${this.firstName[0]}.`;
 }
 
+// Instead of creating a constructor function and prototyping, we can create class
+class Person_class {
+    constructor(firstName, lastName, dob) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = new Date(dob);
+    }
+
+    getBirthYear() {
+        return this.dob.getFullYear();
+    } 
+
+    getFullName() {
+        return `${this.firstName} ${this.lastName}`;
+    } 
+
+    getLastNameAndIntitals() {
+        return `${this.lastName} ${this.firstName[0]}.`;
+    }
+}
+
+
 //Instantiate person (an object)
-const person1 = new Person("Mary", "Smith", "04/06/1991");
+const person1 = new Person_class("Mary", "Smith", "04/06/1991");
 
 console.log(person1);
 console.log(person1.getLastNameAndIntitals());
