@@ -23,12 +23,40 @@
 // const btn = document.querySelector('.btn');
 // btn.style.background = 'red';
 
-const btn = document.querySelector('.btn');
+// const btn = document.querySelector('.btn');
 
-btn.addEventListener('click', (element) => {
+// btn.addEventListener('click', (element) => { // other events: mouseover, mouseout
+//     element.preventDefault();
+//     // changing form background
+//     document.querySelector('#my-form').style.background = '#ccc';
+//     // changing a theme to dark by adding a class
+//     document.querySelector('.container').classList.add('bg-dark');
+//     // changing the text of the item 3
+//     document.querySelector('.items').lastElementChild.innerHTML = 'Hello';
+//     document.querySelector('.items').lastElementChild.style.color = "black";
+// }); 
+
+const myForm = document.querySelector("#my-form");
+const nameInput = document.querySelector("#name");
+const emailInput = document.querySelector("#email");
+const msg = document.querySelector(".msg");
+const userList = document.querySelector("#users");
+
+myForm.addEventListener("submit", onSubmit);
+
+function onSubmit(element) {
     element.preventDefault();
-    // changing form background
-    document.querySelector('#my-form').style.background = '#ccc';
-    // changing a theme to dark by adding a class
-    document.querySelector('.container').classList.add('bg-dark');
-})
+
+    if (nameInput.value === ''|| emailInput.value === '') {
+        msg.classList.add("error");
+        msg.innerHTML = "Please, fill all the inputs";
+        setTimeout(() => msg.remove(), 3000);
+    } else {
+        const li = document.createElement("li");
+        li.appendChild(document.createTextNode(`${nameInput.value} : ${emailInput.value}`));
+        userList.appendChild(li);
+        // clear input fields
+        nameInput.value = '';
+        emailInput.value = '';
+    }
+}
